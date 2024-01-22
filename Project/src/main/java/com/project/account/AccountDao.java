@@ -1,0 +1,13 @@
+package com.project.account;
+
+import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
+
+@Mapper
+public interface AccountDao {
+	public void accountInsert(AccountVo vo);
+	public List<AccountVo> accountList();
+	public AccountVo login(AccountVo vo);
+	
+}

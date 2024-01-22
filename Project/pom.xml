@@ -42,13 +42,20 @@
 			<groupId>org.glassfish.web</groupId>
 			<artifactId>jakarta.servlet.jsp.jstl</artifactId>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.apache.tomcat.embed</groupId>
 			<artifactId>tomcat-embed-jasper</artifactId>
 			<scope>provided</scope>
 		</dependency>
 		<!-- 여기까지 -->
+
+		<!--https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-validation -->
+		<!--https://velog.io/@mooh2jj/Spring-Boot-Validation-%EC%A0%81%EC%9A%A9%ED%95%98%EB%8A%94-%EB%B2%95-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
+		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

@@ -1,18 +1,54 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:import url="/WEB-INF/views/include/top.jsp" />
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Home</title>
 </head>
 <body>
-<h2>index</h2>
+<div class="container">
+<h2>home</h2>
+<c:if test="${avo == null }">
 <div>
-<a href="accountForm.do">회원가입</a>
-<a href="accountList.do">회원목록</a>
-${se.admin }
+<form method="post" action="login.do" id="login-form">
+            <div class="form-group" id="divId">
+				<div class="col-lg-10">
+					<input type="text" class="form-control onlyAlphabetAndNumber"
+						id="account_id" name="account_id" data-rule-required="true"
+						placeholder="아이디" maxlength="30" size="15">
+				</div>
+			</div>
+			<div class="form-group" id="divPassword">
+				<div class="col-lg-10">
+					<input type="password" class="form-control" id="account_pwd"
+						name="account_pwd" data-rule-required="true" placeholder="비밀번호"
+						maxlength="30">
+				</div>
+			</div>
+            <div class="form-group">
+				<div class="col-lg-offset-2 col-lg-10">
+					<button type="submit" class="btn btn-primary">로그인</button>
+				</div>
+			</div>
+        </form>
+</div>
+</c:if>
+		<!-- 로그인 했을 때의 정보---------------------------------------------------------------- -->
+		<c:if test="${avo != null}">
+			<div id="loginDiv">
+				<a href=""></a>
+				<div class="user_img">
+					<img src="img/${avo.user_img }"  style="width: 60px; height: 50px;" />
+				</div>
+				<div>${avo.account_id }님안녕하세요!</div>
+				<button type="button" class="btn btn-danger"
+					onclick="location.href='logout.do'">로그아웃</button>
+			</div>
+		</c:if>
+		<!-- ----------------------------------------------------------------------------------- -->
 </div>
 </body>
 </html>

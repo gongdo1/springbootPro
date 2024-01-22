@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+ <mapper namespace="com.project.board.BoardDao">
+	 
+	<select id="boardList" resultType="com.project.board.BoardVo"> 
+		select * from proboard 
+	</select> 
+ 	<select id="boardOne" resultType="com.project.board.BoardVo"> 
+		select * from proboard where bno=#{bno}
+	</select> 
+ 	<insert id="accountInsert" parameterType="com.project.board.BoardVo"> 
+	insert into proboard(bno,btitle,account_id,bcontent,bimgFile)
+	values((select max(bno)+1 from proboard),
+	#{btitle}, #{account_id},#{bcontent},#{bimgFile});
+	</insert>
+	
+	<!-- <select id="login" resultType="com.project.account.AccountVo" parameterType="com.project.account.AccountVo"> 
+		select account_id,account_pwd,user_email,admin,user_name,user_gender,user_phone,user_img 
+		from account where account_id=#{account_id}
+	</select>  -->
+	
+ </mapper>

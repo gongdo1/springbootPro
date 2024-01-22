@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+ <mapper namespace="com.project.account.AccountDao">
+	 
+	<select id="accountList" resultType="com.project.account.AccountVo"> 
+		select account_id,user_email,admin,user_name,user_gender,user_phone,user_img from account 
+	</select> 
+ 
+ 	<insert id="accountInsert" parameterType="com.project.account.AccountVo"> 
+	insert into account
+	(account_id,account_pwd,user_email,user_name,user_birth,user_gender,user_phone) 
+	values
+	(#{account_id},#{account_pwd},#{user_email},#{user_name},#{user_birth},#{user_gender},#{user_phone})
+	</insert>
+	
+	<select id="login" resultType="com.project.account.AccountVo" parameterType="com.project.account.AccountVo"> 
+		select account_id,account_pwd,user_email,admin,user_name,user_gender,user_phone,user_img 
+		from account where account_id=#{account_id}
+	</select> 
+	
+ </mapper>
