@@ -5,15 +5,58 @@
  <mapper namespace="com.project.board.BoardDao">
 	 
 	<select id="boardList" resultType="com.project.board.BoardVo"> 
-		select * from proboard 
+		select  rownum, Q.* from
+		(select  rownum  as rnum, K.* from  
+		(select * from proboard where 1=1 
+		<if test="ch1 == 'btitle'">
+			and btitle like '%'||#{ch2}||'%'
+		</if>
+		<if test="ch1 == 'account_id'">
+			and account_id like '%'||#{ch2}||'%'
+		</if>
+		<![CDATA[
+		order by bno desc ) K   
+		where rownum <= #{endRow})Q where rnum >= #{startRow}
+		]]>
 	</select> 
+	
+	<select id="indexBoardlist" resultType="com.project.board.BoardVo">
+	select * from (select * from proboard where bstep=0 order by bno desc) 
+	<![CDATA[
+	where rownum<=5
+	]]>
+	</select>
+
+	<select id="totalCount" parameterType="com.project.board.BoardVo" resultType="Integer">
+		select count(*) from proboard where 1=1 
+		<if test="ch1 == 'btitle'">
+			and btitle like '%'||#{ch2}||'%'
+		</if>
+		<if test="ch1 == 'account_id'">
+			and account_id like '%'||#{ch2}||'%'
+		</if>
+	</select>
+	
  	<select id="boardOne" resultType="com.project.board.BoardVo"> 
 		select * from proboard where bno=#{bno}
 	</select> 
- 	<insert id="accountInsert" parameterType="com.project.board.BoardVo"> 
-	insert into proboard(bno,btitle,account_id,bcontent,bimgFile)
-	values((select max(bno)+1 from proboard),
-	#{btitle}, #{account_id},#{bcontent},#{bimgFile});
+	
+	<update id="boardModify" parameterType="com.project.board.BoardVo" >
+		update proboard set btitle=#{btitle}, bcontent=#{bcontent} where account_id=#{account_id} and bno=#{bno}
+	</update>
+	
+	<update id="views" parameterType="com.project.board.BoardVo">
+		update proboard set breadcnt=breadcnt+1 where bno=#{bno}
+	</update>
+	
+	<delete id="boardDelete" parameterType="com.project.board.BoardVo" >
+		delete from proboard where bno=#{bno} and account_id=#{account_id}
+	</delete>
+	
+	 <insert id="boardInsert" parameterType="com.project.board.BoardVo"> 
+		insert into proboard(bno,btitle,account_id,bcontent)
+		values((select max(bno)+1 from proboard),
+		#{btitle}, #{account_id},#{bcontent})
 	</insert>
 	
 	<!-- <select id="login" resultType="com.project.account.AccountVo" parameterType="com.project.account.AccountVo"> 

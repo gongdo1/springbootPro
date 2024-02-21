@@ -74,6 +74,7 @@ span{
 				<label for="inputPhoneNumber" class="col-lg-2 control-label">성별</label>
 				<div class="col-lg-10">
 					<select class="form-control" id="user_gender" name="user_gender">
+						<option value="null">선택안함</option>
 						<option value="m">남자</option>
 						<option value="f">여자</option>
 					</select>

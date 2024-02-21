@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+ <mapper namespace="com.project.mall.MallDao">
+	 
+	<select id="mallList" resultType="com.project.mall.MallVo"> 
+		select * from promall
+	</select>
+	
+	<select id="mallId" resultType="int"> 
+		select max(mallId)+1 from promall
+	</select>
+
+	<select id="fotoramalist" resultType="com.project.mall.MallVo">
+	select * from(select * from promall  where mallimg is not null order by mallid desc)
+	<![CDATA[
+	where rownum <= 3
+	]]>
+	</select>
+
+	<select id="mallOne" resultType="com.project.mall.MallVo"> 
+		select * from promall where mallId=#{mallId}
+	</select>
+	
+ 	<insert id="mallInsert" parameterType="com.project.mall.MallVo"> 
+		insert into promall(mallId,mallName,mallPrice,mallDesc,mallImg,account_id) 
+		values (#{mallId},#{mallName},#{mallPrice},#{mallDesc},#{mallImg},#{account_id})
+	</insert> 
+	
+	<delete id="mallDelete" parameterType="com.project.mall.MallVo">
+		delete from promall where account_id=#{account_id} and mallId=#{mallId}
+	</delete>
+	
+	<insert id="mallAddrUserInsert" parameterType="com.project.mall.MallAddrVo"> 
+		insert into promalladdr(addridx,mallId,account_id,useraddr) 
+		values (malladdridx.nextval,#{mallId},#{account_id},#{useraddr})
+	</insert> 
+	
+	<insert id="firstAddrInsert" parameterType="com.project.mall.MallAddrVo"> 
+		insert into firstaddr(fidx,mallId,account_id,malladdr) 
+		values (addrfirstidx.nextval,#{mallId},#{account_id},#{malladdr})
+	</insert> 
+	
+	<select id="firstaddrCount" resultType="Integer"> 
+		select count(*) from firstaddr 
+		where account_id=#{account_id} and mallId=#{mallId}
+	</select>
+	
+	<select id="mallAddrUserList" resultType="com.project.mall.MallAddrVo"> 
+		select * from promalladdr where account_id=#{account_id}
+	</select>
+	
+	<select id="mallAddrUserone" resultType="com.project.mall.MallAddrVo" parameterType="com.project.mall.MallAddrVo"> 
+		select * from firstaddr where account_id=#{account_id}
+	</select>
+	
+	<update id="mallAddrPick" parameterType="com.project.mall.MallAddrVo">
+		update firstaddr set malladdr=#{malladdr}
+			where account_id=#{account_id}
+	</update>
+	
+	
+ </mapper>

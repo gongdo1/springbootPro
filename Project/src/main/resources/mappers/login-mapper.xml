@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+ <mapper namespace="com.korea.login.LoginDao">
+	 
+	<!-- <select id="loginList" resultType="com.korea.login.LoginVo"> 
+		select * from loginT 
+	</select>
+ 
+ <insert id="loginInsert" parameterType="com.korea.login.LoginVo"> 
+	insert into loginT values(login_idx.nextval,#{name1},#{pwd1});
+	</insert> -->
+	
+ </mapper>

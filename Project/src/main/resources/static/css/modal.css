@@ -1,0 +1,34 @@
+@charset "UTF-8";
+
+#modalOpenButton, #modalCloseButton {
+  cursor: pointer;
+}
+
+#modalContainer {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.5);
+  /* z-index: 9999; */
+}
+
+#modalContent {
+  position: relative;
+  background-color: #ffffff;
+  width: 530px;
+  height: 500px;
+  padding: 15px;
+  text-align: center; /* 모달 내용 가운데 정렬 */
+  border-radius: 8px; /* 모달 모서리를 둥글게 만듦 */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); 
+}
+
+#modalContainer.hidden {
+  display: none;
+}
+

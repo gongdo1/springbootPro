@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>스프링 쇼핑몰관리 ver1.0</title>
+<title>project</title>
 <link href="./css/test.css" rel="stylesheet" type="text/css" charset="utf-8" />
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	rel="stylesheet" type="text/css" />
@@ -17,25 +17,34 @@
 <nav class="navbar">
       <div class="navbar__logo">
         <i class="fas fa-blog"></i>
-        <a href="#">AXCE Coding</a>
+        <a href="#">LOGO</a>
       </div>
       <ul class="navbar__menu">
         <li><a href="/">Home</a></li>
         <c:if test="${avo == null}">
-        <li><a href="accountForm.do">회원가입</a></li>
+        <li><a href="/accountForm">회원가입</a></li>
         </c:if>
         <c:if test="${avo.admin == 'y'}">
         <li><a href="accountList.do">회원목록</a></li>
+                <li><a href="/mallForm">굿즈 등록</a></li>
         </c:if>
-        <li><a href="boardList.do">게시판</a></li>
+        <li><a href="/boardList">게시판</a></li>
+        <li><a href="/lol">롤전적검색</a></li>
+        <li><a href="/mallList">굿즈 목록</a></li>
         <li><a href="#">FAQ</a></li>
       </ul>
       <ul class="navbar__icons">
-        <li><i class="fab fa-google"></i></li>
+       <c:if test="${avo == null}">
+        <li><i class="fab fa-google"><a href="/">로그인</a></i></li>
+       </c:if>
+      <c:if test="${avo != null}">
+        <li><i class="fab fa-google"><a href="logout.do">로그아웃</a></i></li>
+       </c:if>
         <li><i class="fab fa-slack"></i></li>
       </ul>
       <a href="#" class="navbar__toggleBtn">
         <i class="fas fa-hamburger"></i>
       </a>
+      
     </nav>
-
+<br>

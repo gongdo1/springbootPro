@@ -16,6 +16,10 @@ public class BoardVo {
 	private int bstep;
 	private int breforder;
 	
-	
-	
+	private String ch1;
+	private String ch2;
+	private int pageno;
+	private int pagePerRow;
+	private int startRow;
+	private int endRow;
 }
